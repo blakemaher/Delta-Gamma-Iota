@@ -354,3 +354,30 @@ exports.handler = async () => {
   from = "/admin"
   to = "/admin/index.html"
   status = 200
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  const requireMember = async () => {
+    if (!window.netlifyIdentity) {
+      console.error('Netlify Identity not loaded');
+      location.href = '/login.html';
+      return;
+    }
+    window.netlifyIdentity.on('init', user => {
+      // if a user is already logged in
+      if (user) {
+        const roles = (user.app_metadata && user.app_metadata.roles) || (user && user.role ? [user.role] : []);
+        if (roles.indexOf('member') === -1 && roles.indexOf('officer') === -1) {
+          // not approved
+          alert('Your account is awaiting approval or does not have member access.');
+          window.netlifyIdentity.open();
+          location.href = '/login.html';
+        }
+      } else {
+        // no user
+        location.href = '/login.html';
+      }
+    });
+    window.netlifyIdentity.init();
+  };
+  requireMember();
+</script>
