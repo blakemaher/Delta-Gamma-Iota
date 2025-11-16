@@ -1,0 +1,356 @@
+dgi-website/
+├─ index.html
+├─ login.html
+├─ members/dashboard.html
+├─ cardinal-beliefs.html
+├─ philanthropy.html
+├─ executive-council.html
+├─ dues-donations.html
+├─ shop.html
+├─ assets/
+│   ├─ crest.png           ← replace with your uploaded crest file (same name)
+│   └─ ...images...
+├─ css/
+│   └─ styles.css
+├─ js/
+│   └─ main.js
+├─ admin/                  ← Netlify CMS admin
+│   ├─ index.html
+│   └─ config.yml
+├─ functions/              ← Netlify serverless functions
+│   ├─ listPendingUsers.js
+│   └─ updateUserRole.js
+├─ _redirects               (optional)
+└─ netlify.toml
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Delta Gamma Iota</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta name="theme-color" content="#7A0E19">
+</head>
+<body class="dark-theme">
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/">
+        <img src="assets/crest.png" alt="Delta Gamma Iota crest" class="crest">
+        <span class="brand-text">Delta Gamma Iota</span>
+      </a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="cardinal-beliefs.html">Cardinal Beliefs</a>
+        <a href="philanthropy.html">Philanthropy</a>
+        <a href="executive-council.html">Executive Council</a>
+        <a href="shop.html">Shop</a>
+        <a href="dues-donations.html">Dues & Donations</a>
+        <a href="login.html" class="btn btn-login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner container">
+        <h1>Brotherhood • Leadership • Honor</h1>
+        <p class="lead">Delta Gamma Iota — a chapter committed to character, leadership, and lasting brotherhood.</p>
+        <a href="login.html" class="cta">Member Login</a>
+      </div>
+    </section>
+
+    <section class="quick-links container">
+      <div class="card">
+        <h3>Our Mission</h3>
+        <p>To foster a community where men grow into leaders, scholars, and lifelong brothers committed to excellence and positive impact.</p>
+        <a href="cardinal-beliefs.html" class="link">Learn more</a>
+      </div>
+
+      <div class="card">
+        <h3>Philanthropy</h3>
+        <p>Join our service events and support causes that matter.</p>
+        <a href="philanthropy.html" class="link">See events</a>
+      </div>
+
+      <div class="card">
+        <h3>Annual Schedule (Members)</h3>
+        <p>Protected — members only.</p>
+        <a href="members/dashboard.html" class="link">Member Dashboard</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-left">
+        <img src="assets/crest.png" alt="crest small" class="crest-small">
+        <div class="copyright">© Delta Gamma Iota</div>
+      </div>
+      <div class="footer-right">
+        <small>Maroon • White • Black — Modern Greek Design</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Delta Gamma Iota</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark-theme login-page">
+  <main class="login-wrapper">
+    <div class="login-card container">
+      <img src="assets/crest.png" alt="crest" class="login-crest">
+      <h1>Member Login</h1>
+      <div id="login-ui">
+        <button id="btn-netlify" class="btn">Open Netlify Identity Widget</button>
+      </div>
+
+      <hr/>
+
+      <h2>Or sign up</h2>
+      <form id="signup-form">
+        <label>
+          Email
+          <input type="email" id="signup-email" required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="signup-password" required />
+        </label>
+        <label>
+          Chapter Passcode
+          <input type="text" id="signup-passcode" placeholder="Enter passcode" required />
+        </label>
+        <p class="muted">Enter the chapter passcode to register. (Contact an officer for the passcode.)</p>
+        <button class="btn" type="submit">Create Account</button>
+        <div id="signup-msg" class="muted"></div>
+      </form>
+
+      <p class="small muted">Accounts require admin approval after sign-up.</p>
+    </div>
+  </main>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // main.js includes shared logic; copy the relevant parts below for standalone use
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+:root{
+  --maroon: #7A0E19;
+  --black: #000;
+  --white: #fff;
+  --bg: #0f0f10;
+  --card: #151515;
+  --muted: #bdbdbd;
+}
+
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue","Noto Sans",Arial; margin:0; color:var(--white); background:linear-gradient(180deg,var(--bg),#070707); -webkit-font-smoothing:antialiased;}
+.container{max-width:1100px;margin:0 auto;padding:1rem;}
+
+.site-header{border-bottom:1px solid rgba(255,255,255,0.04); padding:0.6rem 0; background:transparent;}
+.brand{display:flex;align-items:center;text-decoration:none;color:var(--white)}
+.crest{height:56px;margin-right:12px}
+.brand-text{font-weight:700;font-size:1.1rem}
+.nav a{color:var(--muted); margin-left:1rem; text-decoration:none}
+.btn{background:var(--maroon);color:var(--white); padding:8px 12px;border-radius:6px;border:none;cursor:pointer;text-decoration:none}
+.btn-login{border:1px solid rgba(255,255,255,0.04);padding:6px 10px}
+
+.hero{padding:64px 0 48px;background:linear-gradient(90deg, rgba(122,14,25,0.06), transparent);}
+.hero-inner h1{font-size:2.2rem;margin:0 0 8px}
+.lead{color:var(--muted)}
+
+.quick-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.card{background:var(--card);padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+.card h3{margin:0 0 8px;color:var(--maroon)}
+
+.site-footer{padding:18px 0;border-top:1px solid rgba(255,255,255,0.03);margin-top:36px;display:flex;justify-content:center}
+.crest-small{height:36px;margin-right:8px;vertical-align:middle}
+.footer-left{display:flex;align-items:center}
+
+/* Login page */
+.login-page{display:flex;height:100vh;align-items:center;justify-content:center}
+.login-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);width:420px; text-align:center}
+.login-crest{height:88px;margin-bottom:8px}
+label{display:block;text-align:left;margin:8px 0}
+input{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white)}
+.muted{color:var(--muted)}
+.small{font-size:0.85rem}
+// js/main.js
+// Replace PASSCODE if you later want to change it in config
+const CHAPTER_PASSCODE = '1965';
+
+// initialize Netlify Identity widget (the widget uses the Netlify Identity service)
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on('init', user => {
+    // optional: we could update UI based on user state
+  });
+  window.netlifyIdentity.init();
+}
+
+// For the full-page netlify widget button
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('btn-netlify');
+  if (btn) {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      if (window.netlifyIdentity) window.netlifyIdentity.open();
+    });
+  }
+
+  // signup form (passcode-protected)
+  const signupForm = document.getElementById('signup-form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const pass = document.getElementById('signup-passcode').value.trim();
+      const msg = document.getElementById('signup-msg');
+
+      if (pass !== CHAPTER_PASSCODE) {
+        msg.textContent = 'Invalid passcode. Please contact an officer.';
+        return;
+      }
+
+      // Create user with Netlify Identity
+      try {
+        const identity = window.netlifyIdentity;
+        if (!identity) {
+          msg.textContent = 'Identity service not loaded.';
+          return;
+        }
+
+        // signUp returns a Promise (email, password)
+        await identity.signup({email, password});
+        msg.textContent = 'Account created. Please check your email to confirm. An admin will approve your account.';
+      } catch (err) {
+        console.error(err);
+        msg.textContent = err && err.message ? err.message : 'Sign up error. Try again.';
+      }
+    });
+  }
+});
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Content Manager — Delta Gamma Iota</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  </head>
+  <body>
+    <!-- Netlify CMS will mount here -->
+  </body>
+</html>
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: "/"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home"
+        name: "home"
+        file: "index.html"
+        fields:
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Lead", name: "hero_lead", widget: "string"}
+          - {label: "Mission", name: "mission", widget: "text"}
+      - label: "Cardinal Beliefs"
+        name: "beliefs"
+        file: "cardinal-beliefs.html"
+        fields:
+          - {label: "Content", name: "body", widget: "markdown"}
+      - label: "Philanthropy"
+        name: "philanthropy"
+        file: "philanthropy.html"
+        fields:
+          - {label: "Content", name: "body", widget: "markdown"}
+      - label: "Executive Council"
+        name: "executive"
+        file: "executive-council.html"
+        fields:
+          - {label: "Content", name: "body", widget: "markdown"}
+      - label: "Dues & Donations"
+        name: "dues"
+        file: "dues-donations.html"
+        fields:
+          - {label: "Content", name: "body", widget: "markdown"}
+  - name: "shop"
+    label: "Shop Items"
+    folder: "shop-items"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+// updateUserRole.js
+// This uses Netlify Identity's admin API; requires NETLIFY_SITE_ID and NETLIFY_TOKEN env var
+const fetch = require('node-fetch');
+
+exports.handler = async (event) => {
+  const { userId, role } = JSON.parse(event.body || '{}');
+  const siteId = process.env.SITE_ID || process.env.NETLIFY_SITE_ID;
+  const token = process.env.NETLIFY_TOKEN; // Create a personal access token in Netlify and set as env var
+  if (!token) {
+    return { statusCode: 500, body: 'NETLIFY_TOKEN not configured' };
+  }
+  if (!userId) return { statusCode: 400, body: 'Missing userId' };
+
+  const url = `https://api.netlify.com/api/v1/identity/admin/users/${userId}`;
+  const resp = await fetch(url, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ role })
+  });
+  const data = await resp.json();
+  return {
+    statusCode: resp.ok ? 200 : 500,
+    body: JSON.stringify(data)
+  };
+};
+// listPendingUsers.js
+const fetch = require('node-fetch');
+
+exports.handler = async () => {
+  const token = process.env.NETLIFY_TOKEN;
+  if (!token) return { statusCode: 500, body: 'NETLIFY_TOKEN not configured' };
+
+  const resp = await fetch(`https://api.netlify.com/api/v1/identity/admin/users`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const data = await resp.json();
+  // filter pending users
+  const pending = data.filter(u => u.email_confirmed && (u.confirmed_at && u.app_metadata && (u.app_metadata.roles && u.app_metadata.roles.indexOf('pending') !== -1 || u.role === 'pending' )));
+  return { statusCode: 200, body: JSON.stringify(pending) };
+};
+[build]
+  publish = "./"
+  functions = "functions"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
